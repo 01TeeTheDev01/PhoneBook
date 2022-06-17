@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactsTest.AddNewContactPage"
+             BackgroundColor="Black">
+
+    <ScrollView>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Title-->
+            <Frame Grid.Row="0"
+                   Margin="0,0,0,30"
+                   BackgroundColor="DarkSlateBlue"
+                   CornerRadius="0">
+                <Label Text="New contact" 
+                   FontSize="Title"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"/>
+            </Frame>
+
+            <!--Form-->
+            <StackLayout Grid.Row="1"
+                     VerticalOptions="CenterAndExpand"
+                     Margin="5">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--FirstName-->
+                    <StackLayout Grid.Column="0" Grid.Row="0"
+                                 Orientation="Horizontal">
+                        
+                        <Image Source="contact2.png" 
+                               Aspect="AspectFit" 
+                               Margin="3"
+                               VerticalOptions="Center"
+                               HeightRequest="25"/>
+
+                        <Label Text="Name"
+                               VerticalOptions="Center"
+                               Margin="3"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center"
+                               TextColor="Gray"/>
+                    </StackLayout>
+
+                    <Entry Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
+                           Keyboard="Chat"
+                           PlaceholderColor="Gray"
+                           Placeholder="Tap here to type..."
+                           x:Name="FirstNameEntry"
+                           TextColor="Gray"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="15"/>
+
+
+                    <!--LastName-->
+                    <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                        <Image Source="contact2.png" 
+                               Aspect="AspectFit" 
+                               Margin="3"
+                               VerticalOptions="Center"
+                               HeightRequest="25"/>
+
+                        <Label Text="Surname"
+                               VerticalOptions="Center"
+                               Margin="3"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center"
+                               TextColor="Gray"/>
+                    </StackLayout>
+
+                    <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+                           Keyboard="Chat"
+                           PlaceholderColor="Gray"
+                           Placeholder="Tap here to type..."
+                           x:Name="LastNameEntry"
+                           TextColor="Gray"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="15"/>
+
+
+                    <!--Email-->
+                    <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                        <Image Source="email.png" 
+                               Aspect="AspectFit" 
+                               Margin="3"
+                               VerticalOptions="Center"
+                               HeightRequest="25"/>
+
+                        <Label Text="Email"
+                               VerticalOptions="Center"
+                               Margin="3"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="Gray"/>
+                    </StackLayout>
+
+                    <Entry Grid.Column="1" Grid.Row="2"
+                           Keyboard="Email"
+                           PlaceholderColor="Gray"
+                           Placeholder="Tap here to type..."
+                           x:Name="EmailEntry"
+                           TextColor="Gray"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="15"/>
+
+                    <Picker Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"
+                            TitleColor="Gray"
+                            TextColor="Gray"
+                            Title="Domain"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            x:Name="DomainPicker"
+                            FontSize="15"/>
+
+
+                    <!--Phone number-->
+                    <StackLayout Grid.Column="0" Grid.Row="3" Orientation="Horizontal">
+                        
+                        <Image Source="phone.png" 
+                               Aspect="AspectFit" 
+                               Margin="3"
+                               VerticalOptions="Center"
+                               HeightRequest="25"/>
+
+                        <Label Text="Phone"
+                               VerticalOptions="Center"
+                               Margin="3"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="Gray"/>
+
+                        <Picker TitleColor="Gray"
+                                TextColor="Gray"
+                                Title="CC"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"
+                                x:Name="CountryPicker"
+                                FontSize="15"
+                                WidthRequest="40"/>
+                    </StackLayout>
+
+                    <Entry Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
+                           Keyboard="Telephone"
+                           PlaceholderColor="Gray"
+                           Placeholder="Tap here to type..."
+                           x:Name="PhoneEntry"
+                           TextColor="Gray"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="15"
+                           MaxLength="9"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            
+            <Image Grid.Row="2"
+               Source="contact.png"
+               Aspect="AspectFit"
+               Margin="5"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand"/>
+
+
+            <Button Text="Save" 
+                    Grid.Row="3" 
+                    Clicked="CreateContactBtn_Clicked" 
+                    x:Name="CreateContactBtn"
+                    VerticalOptions="EndAndExpand"
+                    Margin="15"
+                    BackgroundColor="DarkSlateBlue"
+                    TextColor="White"
+                    TranslationY="20"
+                    CornerRadius="5"/>
+
+
+            <Button Text="Back to main" 
+                    Grid.Row="4"
+                    x:Name="BackToMainBtn"
+                    Clicked="BackToMainBtn_Clicked"
+                    VerticalOptions="EndAndExpand"
+                    Margin="15"
+                    BackgroundColor="DarkSlateBlue"
+                    TextColor="White"
+                    CornerRadius="5"/>
+
+        </Grid>
+        
+    </ScrollView>
+
+</ContentPage>

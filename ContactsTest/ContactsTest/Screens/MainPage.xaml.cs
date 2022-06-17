@@ -10,13 +10,15 @@ using ContactsTest.Services;
 
 using Xamarin.Forms;
 
+using static ContactsTest.Services.PhoneBookServices;
+
 namespace ContactsTest
 {
     public partial class MainPage : ContentPage
     {
-        private IContactServices contactServices;
+        private IPhoneBookServices contactServices;
 
-        private ContactActions contactActions;
+        private PhoneBookActions contactActions;
 
         public MainPage()
         {
@@ -26,11 +28,7 @@ namespace ContactsTest
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            FetchContacts();
-        }
-
-        private void GetContactsBtn_Clicked(object sender, EventArgs e)
-        {
+            
             FetchContacts();
         }
 
@@ -56,7 +54,7 @@ namespace ContactsTest
             {
                 if (ContactListView.SelectedItem != null)
                 {
-                    var deleteContact = (Contact)ContactListView.SelectedItem;
+                    var deleteContact = (PhoneContact)ContactListView.SelectedItem;
 
                     ContactListView.Dispatcher.BeginInvokeOnMainThread(async () =>
                     {
@@ -92,9 +90,9 @@ namespace ContactsTest
         {
             try
             {
-                contactServices = new ContactServices();
+                contactServices = new PhoneBookServices();
 
-                contactActions = new ContactActions(contactServices);
+                contactActions = new PhoneBookActions(contactServices);
 
                 //ContactListView.Dispatcher.BeginInvokeOnMainThread(() => { ContactListView.ItemsSource = null; });
 
@@ -109,6 +107,19 @@ namespace ContactsTest
             catch (Exception ex)
             {
                 await DisplayAlert("Error", $"{ex.Message}", "I understand");
+            }
+        }
+
+        private async void CallBtn_Clicked(object sender, EventArgs e)
+        {
+            var contact = (PhoneContact)ContactListView.SelectedItem;
+
+            if (contact != null)
+            {
+                var result = await contactActions.CallContact(contact);
+
+                if (result.Equals(PhoneCallStatus.Failed.ToString()))
+                    await DisplayAlert("Error", ErrorMessage.Message, "I understand");
             }
         }
     }

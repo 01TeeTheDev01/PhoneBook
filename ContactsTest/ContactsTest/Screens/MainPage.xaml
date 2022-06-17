@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactsTest.MainPage"
+             BackgroundColor="Black">
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Grid.Row="0"
+               Grid.ColumnSpan="2"
+               BackgroundColor="DarkSlateBlue"
+               CornerRadius="0">
+            <Label Text="Phonebook" 
+                       FontSize="Title"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White"/>
+        </Frame>
+
+        <ListView Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  x:Name="ContactListView"
+                  Margin="5">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding FullDetails}" 
+                               ImageSource="contact.png"
+                               Detail="{Binding Email}"
+                               TextColor="Gray"
+                               DetailColor="Gray"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <Button Text="New contact" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    x:Name="AddContactBtn"
+                    Clicked="AddContactBtn_Clicked"
+                    VerticalOptions="End"
+                    Margin="15,15,5,15"
+                    TranslationY="20"
+                    CornerRadius="5"
+                    BackgroundColor="DarkSlateBlue"
+                    TextColor="White"/>
+
+        <Button Text="Delete contact"
+                    Grid.Row="2" 
+                    Grid.Column="1"
+                    Clicked="DeleteContactBtn_Clicked" 
+                    x:Name="DeleteContactBtn"
+                    VerticalOptions="End"
+                    Margin="5,15,15,15"
+                    TranslationY="20"
+                    CornerRadius="5"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+
+        <Button Text="Call"
+                Grid.Row="3" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Clicked="CallBtn_Clicked" 
+                x:Name="CallBtn"
+                VerticalOptions="End"
+                Margin="15"
+                BackgroundColor="DarkSlateBlue"
+                TextColor="White"
+                CornerRadius="5"/>
+    </Grid>
+
+</ContentPage>

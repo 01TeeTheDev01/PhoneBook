@@ -5,7 +5,7 @@ using SQLite;
 
 namespace ContactsTest.Models
 {
-    public class Contact
+    public class PhoneContact
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -18,5 +18,16 @@ namespace ContactsTest.Models
 
         [MaxLength(100)]
         public string Email { get; set; }
+
+        [MaxLength(12)]
+        public string PhoneNumber { get; set; }
+
+        public string FullDetails
+        {
+            get
+            {
+                return $"{FirstName} {LastName} ({PhoneNumber})";
+            }
+        }
     }
 }
