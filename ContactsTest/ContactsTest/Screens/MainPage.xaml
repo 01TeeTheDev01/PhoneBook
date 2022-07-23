@@ -80,7 +80,7 @@
                 x:Name="CallBtn"
                 VerticalOptions="End"
                 Margin="15"
-                BackgroundColor="DarkSlateBlue"
+                BackgroundColor="Green"
                 TextColor="White"
                 CornerRadius="5"/>
     </Grid>

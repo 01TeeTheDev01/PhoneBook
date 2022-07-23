@@ -1,6 +1,6 @@
 ﻿namespace ContactsTest.Services
 {
-    internal partial class PhoneBookServices
+    internal partial class PhoneBookServicesRepository
     {
         public enum PhoneCallStatus
         { 

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using ContactsTest.Models;
 using ContactsTest.Services;
+using ContactsTest.Services.PhoneBookActions;
+using ContactsTest.Services.PhoneBookRepository;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,9 +17,9 @@ namespace ContactsTest
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddNewContactPage : ContentPage
     {
-        private IPhoneBookServices contactServices;
+        private IPhoneBookServicesRepository contactServices;
 
-        private PhoneBookActions contactActions;
+        private PhoneBookActivities contactActions;
 
         public AddNewContactPage()
         {
@@ -40,7 +42,7 @@ namespace ContactsTest
         {
             base.OnAppearing();
 
-            DomainPicker.SelectedIndex = 0;
+            DomainPicker.SelectedIndex = -1;
         }
 
         private void ResetFields()
@@ -50,7 +52,7 @@ namespace ContactsTest
             EmailEntry.Text = string.Empty;
             PhoneEntry.Text = string.Empty;
             DomainPicker.SelectedIndex = -1;
-            CountryPicker.SelectedIndex = -1;
+            CountryPicker.SelectedIndex = 0;
         }
 
         private async void BackToMainBtn_Clicked(object sender, EventArgs e)
@@ -69,9 +71,9 @@ namespace ContactsTest
         {
             try
             {
-                contactServices = new PhoneBookServices();
+                contactServices = new PhoneBookServicesRepository();
 
-                contactActions = new PhoneBookActions(contactServices, new PhoneContact());
+                contactActions = new PhoneBookActivities(contactServices, new PhoneContact());
 
                 for (int domainIndex = 0; domainIndex < DomainPicker.Items.Count; domainIndex++)
                 {

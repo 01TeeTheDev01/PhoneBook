@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using ContactsTest.Models;
+using ContactsTest.Services.PhoneBookRepository;
 
 using SQLite;
 
@@ -11,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace ContactsTest.Services
 {
-    internal partial class PhoneBookServices : IPhoneBookServices
+    internal partial class PhoneBookServicesRepository : IPhoneBookServicesRepository
     {
         private SQLiteAsyncConnection conn;
 
@@ -32,7 +33,7 @@ namespace ContactsTest.Services
                     if (emailRegex && phoneRegex)
                     {
                         conn = new SQLiteAsyncConnection(PhoneContactConstants.ConnectionString.DatabasePath, true);
-                        await conn.CreateTableAsync<Models.PhoneContact>();
+                        await conn.CreateTableAsync<PhoneContact>();
                         var result = await conn.InsertAsync(contact);
                         if (result > 0)
                         {

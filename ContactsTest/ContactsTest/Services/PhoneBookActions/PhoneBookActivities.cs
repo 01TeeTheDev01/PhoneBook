@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using ContactsTest.Models;
+using ContactsTest.Services.PhoneBookRepository;
 
-namespace ContactsTest.Services
+namespace ContactsTest.Services.PhoneBookActions
 {
-    internal class PhoneBookActions
+    internal class PhoneBookActivities
     {
-        private readonly IPhoneBookServices _contactServices;
+        private readonly IPhoneBookServicesRepository _contactServices;
 
         private readonly PhoneContact contactObject;
 
-        public PhoneBookActions(IPhoneBookServices contactServices)
+        public PhoneBookActivities(IPhoneBookServicesRepository contactServices)
         {
             _contactServices = contactServices ?? throw new ArgumentNullException(nameof(contactServices));
         }
 
-        public PhoneBookActions(IPhoneBookServices contactServices, PhoneContact contactObject = null)
+        public PhoneBookActivities(IPhoneBookServicesRepository contactServices, PhoneContact contactObject = null)
         {
             _contactServices = contactServices ?? throw new ArgumentNullException(nameof(contactServices));
             this.contactObject = contactObject ?? throw new ArgumentNullException(nameof(contactObject));
@@ -33,7 +34,7 @@ namespace ContactsTest.Services
             contactObject.FirstName = firstName;
             contactObject.LastName = lastName;
             contactObject.Email = email;
-            contactObject.PhoneNumber = phone; 
+            contactObject.PhoneNumber = phone;
 
             return await _contactServices.AddContact(contactObject);
         }

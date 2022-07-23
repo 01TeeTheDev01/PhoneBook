@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 using ContactsTest.Models;
 using ContactsTest.Services;
+using ContactsTest.Services.PhoneBookActions;
+using ContactsTest.Services.PhoneBookRepository;
 
 using Xamarin.Forms;
 
-using static ContactsTest.Services.PhoneBookServices;
+using static ContactsTest.Services.PhoneBookServicesRepository;
 
 namespace ContactsTest
 {
     public partial class MainPage : ContentPage
     {
-        private IPhoneBookServices contactServices;
+        private IPhoneBookServicesRepository contactServices;
 
-        private PhoneBookActions contactActions;
+        private PhoneBookActivities contactActions;
 
         public MainPage()
         {
@@ -90,9 +92,9 @@ namespace ContactsTest
         {
             try
             {
-                contactServices = new PhoneBookServices();
+                contactServices = new PhoneBookServicesRepository();
 
-                contactActions = new PhoneBookActions(contactServices);
+                contactActions = new PhoneBookActivities(contactServices);
 
                 //ContactListView.Dispatcher.BeginInvokeOnMainThread(() => { ContactListView.ItemsSource = null; });
 

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 using ContactsTest.Models;
 
-namespace ContactsTest.Services
+namespace ContactsTest.Services.PhoneBookRepository
 {
-    internal interface IPhoneBookServices
+    internal interface IPhoneBookServicesRepository
     {
         Task<IReadOnlyList<PhoneContact>> GetContacts();
         Task<bool> AddContact(PhoneContact contact);
